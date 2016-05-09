@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509071131) do
+ActiveRecord::Schema.define(version: 20160509074732) do
 
   create_table "haunts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20160509071131) do
     t.index ["email"], name: "index_haunts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_haunts_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_haunts_on_unlock_token", unique: true
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "haunt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["haunt_id"], name: "index_messages_on_haunt_id"
   end
 
 end
