@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'hangers/show'
+  devise_for :haunts
+  
+  root to:'hangers#show'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
