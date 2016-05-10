@@ -5,6 +5,7 @@ class Haunt < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
   has_many :messages
+  has_many :conversations, class_name: 'Conversation', foreign_key: :sender_id
 
   def display_name
     email
