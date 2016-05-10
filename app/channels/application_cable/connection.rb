@@ -10,7 +10,8 @@ module ApplicationCable
 
     protected
       def find_verified_user
-        if verified_user = Haunt.find_by(id: cookies.signed['haunt.id'])
+        verified_user = Haunt.find_by(id: cookies.signed['haunt.id'])
+        if verified_user && cookies.signed['haunt.expires_at'] > Time.now
           verified_user
         else
           reject_unauthorized_connection

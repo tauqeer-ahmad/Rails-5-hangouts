@@ -11,7 +11,22 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
+    <ul>
+      <% if haunt_signed_in? %>
+        <li>
+        <%= link_to('Logout', destroy_haunt_session_path, :method => :delete) %>
+        </li>
+      <% else %>
+        <li>
+        <%= link_to('Login', new_haunt_session_path)  %>
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <% Haunt.online_haunts.each do |haunt| %>
+        <li><%= haunt.display_name %></li>
+      <% end %>
+    </ul>
     <%= yield %>
   </body>
 </html>
