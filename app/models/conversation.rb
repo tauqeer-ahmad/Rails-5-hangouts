@@ -4,6 +4,8 @@ class Conversation < ApplicationRecord
 
   validates_uniqueness_of :sender_id, scope: :recipient_id
 
+  has_many :messages
+
   scope :involving, -> (user) do
     where("conversations.sender_id =? OR conversations.recipient_id =?", user.id, user.id)
   end
