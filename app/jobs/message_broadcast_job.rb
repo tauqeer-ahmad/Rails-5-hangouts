@@ -2,7 +2,7 @@ class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    ActionCable.server.broadcast  'hanger_channel', message: render_message(message)
+    ActionCable.server.broadcast  'hanger_channel', message: render_message(message), conversation_id: message.conversation_id
   end
 
   private

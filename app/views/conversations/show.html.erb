@@ -1,0 +1,11 @@
+<h1>Conversations#show</h1>
+<p>Find me in app/views/conversations/show.html.erb</p>
+
+<div id="hanger-<%= @conversation.id %>">
+  <%= render @messages %>
+</div>
+
+<form>
+  <label>Say something:</label><br>
+  <input type="text" data-behavior="hanger_speaker" data-rip="<%= @conversation.id %>">
+</form>

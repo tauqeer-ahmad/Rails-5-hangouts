@@ -6,14 +6,14 @@ App.hanger = App.cable.subscriptions.create "HangerChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    $('#messages').append data['message']
+    $("#hanger-#{data['conversation_id']}").append data['message']
     # Called when there's incoming data on the websocket for this channel
 
-  speak: (message) ->
-    @perform 'speak', message: message
+  speak: (message, conversation_id) ->
+    @perform 'speak', message: message, conversation_id: conversation_id
 
 $(document).on 'keypress', '[data-behavior~=hanger_speaker]', (event) ->
   if event.keyCode is 13 # return = send
-    App.hanger.speak event.target.value
+    App.hanger.speak event.target.value, $(this).attr('data-rip')
     event.target.value = ""
     event.preventDefault()
