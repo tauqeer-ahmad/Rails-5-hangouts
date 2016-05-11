@@ -20,4 +20,18 @@ class Haunt < ApplicationRecord
   def self.online_haunts
     online
   end
+
+  def appear
+    $redis_onlines.set( self.id, nil, ex: 10*60 )
+    AppearanceBroadcastJob.perform_later list
+  end
+
+  def away
+    $redis_onlines.del( self.id )
+    AppearanceBroadcastJob.perform_later list
+  end
+
+  def list
+    self.class.online.to_a
+  end
 end

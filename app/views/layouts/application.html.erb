@@ -22,11 +22,6 @@
         </li>
       <% end %>
     </ul>
-    <ul>
-      <% Haunt.online_haunts.each do |haunt| %>
-        <li><%= haunt.display_name %></li>
-      <% end %>
-    </ul>
     <%= yield %>
   </body>
 </html>
