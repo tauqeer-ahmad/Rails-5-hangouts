@@ -1,3 +1,5 @@
-<% appearances.each do |appearance| %>
-  <%= render appearance %>
-<% end %>
+<ul id="image" >
+  <% appearances.each do |appearance| %>
+    <li><%= link_to appearance.display_name, conversation_haunt_path(appearance), method: :post %></li>
+  <% end %>
+</ul>

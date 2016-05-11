@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :mark_alive
+  before_action :set_online_haunts
 
   private
 
@@ -12,10 +13,14 @@ class ApplicationController < ActionController::Base
     current_haunt.try :touch
   end
 
+  def set_online_haunts
+    @appearances = []
+  end
+
   protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :surename, :password) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :surename, :password, :email) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :email, :password, :current_password, :surname) }
     end
 end
