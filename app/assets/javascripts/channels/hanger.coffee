@@ -6,6 +6,7 @@ App.hanger = App.cable.subscriptions.create "HangerChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
+    $('#chatAudio')[0].play()
     $("#hanger-#{data['conversation_id']}").append data['message']
     # Called when there's incoming data on the websocket for this channel
 
