@@ -6,9 +6,8 @@ App.appearance = App.cable.subscriptions.create "AppearanceChannel",
      @away()
 
   received: (data) ->
-    console.log data['appearances']
     $(document).ready ->
-      document.getElementById('appearances').innerHTML = data['appearances']
+      document.getElementById('appearances').innerHTML = data['appearances'] if document.getElementById('appearances') != null
 
   away: ->
     @perform 'away'

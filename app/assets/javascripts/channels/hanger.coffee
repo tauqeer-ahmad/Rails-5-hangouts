@@ -6,7 +6,16 @@ App.hanger = App.cable.subscriptions.create "HangerChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    $('#chatAudio')[0].play()
+    active_haunt = parseInt( $('body').attr('data-active-haunt') , 10 );
+    if window.Notification && active_haunt == data['creator_id']
+      Notification.requestPermission()
+
+    new Notification data['ntitle'], body: data['nbody'] if active_haunt != data['creator_id']
+
+    if active_haunt == data['creator_id']
+      $('#sendAudio')[0].play()
+    else
+      $('#chatAudio')[0].play()
     $("#hanger-#{data['conversation_id']}").append data['message']
     # Called when there's incoming data on the websocket for this channel
 

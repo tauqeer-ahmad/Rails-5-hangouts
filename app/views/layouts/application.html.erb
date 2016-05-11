@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-active-haunt=<%= current_haunt.try(:id) %> >
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <ul>
@@ -24,5 +24,6 @@
     </ul>
     <%= yield %>
     <audio id="chatAudio"><source src="<%= asset_path '/assets/notification.mp3' %>" type="audio/mpeg"></audio>
+     <audio id="sendAudio"><source src="<%= asset_path '/assets/send.mp3' %>" type="audio/mpeg"></audio>
   </body>
 </html>
