@@ -5,14 +5,14 @@ class AppearanceChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    current_user.away
+    current_haunt.away
   end
 
   def away
-    current_user.away
+    current_haunt.away
   end
 
   def appear
-    current_user.appear
+    current_haunt.appear
   end
 end

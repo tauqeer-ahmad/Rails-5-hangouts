@@ -1,19 +1,20 @@
 class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
-  def perform(message)
+  def perform(message, current_haunt)
     ActionCable.server.broadcast  'hanger_channel',
-                                   message: render_message(message),
+                                   message: render_message(message, current_haunt),
                                    conversation_id: message.conversation_id,
                                    recipient_id: message.recipient_id,
+                                   sender_id: message.sender_id,
                                    creator_id: message.haunt_id,
                                    ntitle: generate_ntitle(message),
                                    nbody:  generate_nbody(message)
   end
 
   private
-    def render_message(message)
-      ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message })
+    def render_message(message, current_haunt)
+      ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message, haunt: current_haunt })
     end
 
     def generate_ntitle(message)
