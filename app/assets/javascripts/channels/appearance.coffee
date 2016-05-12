@@ -6,8 +6,9 @@ App.appearance = App.cable.subscriptions.create "AppearanceChannel",
      @away()
 
   received: (data) ->
+    console.log data
     $(document).ready ->
-      document.getElementById('appearances').innerHTML = data['appearances'] if document.getElementById('appearances') != null
+      $("#online-#{data['current_haunt']}").replaceWith(data['online'])
 
   away: ->
     @perform 'away'

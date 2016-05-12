@@ -1,5 +1,5 @@
-<ul id="image" >
-  <% appearances.each do |appearance| %>
-    <li><%= link_to appearance.display_name, conversation_haunt_path(appearance), method: :post %></li>
+<ul>
+  <% all_haunts.each do |haunt| %>
+    <%= render partial: "haunts/online", locals: {haunt: haunt, appearences_ids: appearences_ids} %>
   <% end %>
 </ul>

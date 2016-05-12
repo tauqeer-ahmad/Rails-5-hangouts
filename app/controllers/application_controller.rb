@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_online_haunts
-    @appearances = []
+    @appearances ||= Haunt.all
   end
 
   protected

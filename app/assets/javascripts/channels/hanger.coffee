@@ -15,11 +15,10 @@ App.hanger = App.cable.subscriptions.create "HangerChannel",
     if active_haunt == data['creator_id']
       $('#sendAudio')[0].play()
     else if active_haunt == data['recipient_id']
-      alert(active_haunt)
       $('#chatAudio')[0].play()
-    if active_haunt == data['creator_id'] || active_haunt == data['recipient_id']
-      $("#hanger-#{data['conversation_id']}").append data['message']
-      $('.slimscroll').scrollTop($('.slimscroll')[0].scrollHeight)
+
+    $("#hanger-#{data['conversation_id']}").append data['message']
+    $('.slimscroll').scrollTop($('.slimscroll')[0].scrollHeight)
       # Called when there's incoming data on the websocket for this channel
 
   speak: (message, conversation_id) ->

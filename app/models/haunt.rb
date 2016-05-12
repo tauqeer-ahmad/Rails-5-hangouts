@@ -23,12 +23,12 @@ class Haunt < ApplicationRecord
 
   def appear
     $redis_onlines.set( self.id, nil, ex: 10*60 )
-    AppearanceBroadcastJob.perform_later list
+    AppearanceBroadcastJob.perform_later list, self
   end
 
   def away
     $redis_onlines.del( self.id )
-    AppearanceBroadcastJob.perform_later list
+    AppearanceBroadcastJob.perform_later list, self
   end
 
   def list

@@ -36,7 +36,11 @@
         <div class="innertube">
           <h3>Online</h3>
           <div id="appearances">
-            <%= render @appearances %>
+            <ul>
+              <% @appearances.each do |haunt| %>
+                <%= render partial: "haunts/online", locals: {haunt: haunt, appearences_ids: $redis_onlines.keys.collect(&:to_i)} %>
+              <% end %>
+            </ul>
           </div>
         </div>
       </nav>
