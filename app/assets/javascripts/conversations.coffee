@@ -4,3 +4,5 @@
 $ ->
   $('.slimscroll').slimScroll
     height: '400px'
+
+  $('.slimscroll').scrollTop($('.slimscroll')[0].scrollHeight)
