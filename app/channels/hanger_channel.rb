@@ -10,6 +10,5 @@ class HangerChannel < ApplicationCable::Channel
 
   def speak(data)
     message = Message.create! content: data['message'], haunt_id: current_haunt.id, conversation_id: data['conversation_id']
-    MessageBroadcastJob.perform_later message.reload, current_haunt
   end
 end

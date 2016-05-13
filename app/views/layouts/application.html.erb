@@ -9,41 +9,34 @@
   </head>
 
   <body data-active-haunt=<%= current_haunt.try(:id) %> >
-    <div id="wrapper">
-      <main>
-        <div id="content">
-          <div class="innertube">
-            <ul>
-              <% if haunt_signed_in? %>
-                <li>
-                  <%= link_to('Logout', destroy_haunt_session_path, :method => :delete) %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to('Login', new_haunt_session_path)  %>
-                </li>
-              <% end %>
-            </ul>
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
+    <div class="ui">
+      <div class="left-menu">
+        <form action="#" class="search">
+          <input placeholder="search..." type="search" name="" id="">
+          <input type="submit" value="&#xf002;">
+        </form>
+        <menu class="list-friends">
+          <% @appearances.each do |haunt| %>
+            <%= render partial: "haunts/online", locals: {haunt: haunt, appearences_ids: $redis_onlines.keys.collect(&:to_i)} %>
+          <% end %>
+        </menu>
+      </div>
+      <div class="chat">
+        <ul>
+          <% if haunt_signed_in? %>
+            <li>
+              <%= link_to('Logout', destroy_haunt_session_path, :method => :delete) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to('Login', new_haunt_session_path)  %>
+            </li>
+          <% end %>
+        </ul>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
 
-            <%= yield %>
-          </div>
-        </div>
-      </main>
-
-      <nav id="nav">
-        <div class="innertube">
-          <h3>Online</h3>
-          <div id="appearances">
-            <ul>
-              <% @appearances.each do |haunt| %>
-                <%= render partial: "haunts/online", locals: {haunt: haunt, appearences_ids: $redis_onlines.keys.collect(&:to_i)} %>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
+        <%= yield %>
     </div>
 
     <audio id="chatAudio"><source src="<%= asset_path '/assets/notification.mp3' %>" type="audio/mpeg"></audio>

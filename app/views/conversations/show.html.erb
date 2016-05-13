@@ -1,12 +1,22 @@
-<div class="slimscroll">
-  <div id="hanger-<%= @conversation.id %>" class="chatboxcontent">
-    <% @messages.each do |message| %>
-      <%= render partial: 'messages/message', locals: { message: message, haunt: current_haunt} %>
-    <% end %>
+<div class="top">
+  <div class="avatar">
+    <img width="50" height="50" src="http://cs625730.vk.me/v625730358/1126a/qEjM1AnybRA.jpg">
+  </div>
+  <div class="info">
+    <div class="name"><%= current_haunt.display_name %></div>
+    <div class="count">already <%= @messages.count %> messages</div>
   </div>
 </div>
-<div class="chatboxinput">
-  <form>
-    <%= text_area_tag :body, "", class: "chatboxtextarea", "data-rip" => @conversation.id, "data-behavior" => "hanger_speaker", placeholder: "Write here... " %>
-  </form>
+<div class="slimscroll">
+  <ul id="hanger-<%= @conversation.id %>" class="messages">
+    <% @messages.each do |message| %>
+      <%= render partial: 'messages/message', locals: { message: message, haunt: current_haunt } %>
+    <% end %>
+  </ul>
+</div>
+<div class="write-form">
+  <%= text_area_tag :body, "", class: "chatboxtextarea", "data-rip" => @conversation.id, "data-behavior" => "hanger_speaker", placeholder: "Type your message " %>
+  <i class="fa fa-picture-o"></i>
+  <i class="fa fa-file-o"></i>
+  <span class="send">Send</span>
 </div>

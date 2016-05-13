@@ -1,11 +1,7 @@
 <li id="message-<%= message.id %>" class="<%= self_or_other(message, haunt) %>">
-  <div class="avatar">
-    <img src="http://placehold.it/50x50" />
+  <div class="head">
+    <span class="time"><%= message.created_at.strftime("%H:%M %p") %></span>
+    <span class="name"><%= message_interlocutor(message).display_name %></span>
   </div>
-  <div class="chatboxmessagecontent">
-    <p><%= message.content %></p>
-    <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
-      <%= message_interlocutor(message).display_name %> • <%= message.created_at.strftime("%H:%M %p") %>
-    </time>
-  </div>
+  <div class="message"><%= message.content %></div>
 </li>
