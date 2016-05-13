@@ -9,6 +9,17 @@
   </head>
 
   <body data-active-haunt=<%= current_haunt.try(:id) %> >
+    <ul>
+      <% if haunt_signed_in? %>
+        <li>
+          <%= link_to('Logout', destroy_haunt_session_path, :method => :delete) %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to('Login', new_haunt_session_path)  %>
+        </li>
+      <% end %>
+    </ul>
     <div class="ui">
       <div class="left-menu">
         <form action="#" class="search">
@@ -22,17 +33,6 @@
         </menu>
       </div>
       <div class="chat">
-        <ul>
-          <% if haunt_signed_in? %>
-            <li>
-              <%= link_to('Logout', destroy_haunt_session_path, :method => :delete) %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to('Login', new_haunt_session_path)  %>
-            </li>
-          <% end %>
-        </ul>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
 
