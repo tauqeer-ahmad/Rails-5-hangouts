@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :conversations, only: [:show]
   resources :haunts, only: [] do
     member do
-      post :conversation
+      get :conversation
     end
   end
 

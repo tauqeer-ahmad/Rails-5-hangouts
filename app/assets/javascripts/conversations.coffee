@@ -5,4 +5,4 @@ $ ->
   $('.slimscroll').slimScroll
     height: '400px'
 
-  $('.slimscroll').scrollTop($('.slimscroll')[0].scrollHeight)
+  $('.slimscroll').scrollTop($('.slimscroll')[0].scrollHeight) if $('.slimscroll').length > 0

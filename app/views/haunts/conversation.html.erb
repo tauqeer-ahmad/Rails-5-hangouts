@@ -1,0 +1,22 @@
+<div class="top">
+  <div class="avatar">
+    <%= image_tag @haunt.avatar.url.to_s, width: "50", height: "50" %>
+  </div>
+  <div class="info">
+    <div class="name"><%= @haunt.display_name %></div>
+    <div class="count">already <%= @messages.count %> messages</div>
+  </div>
+</div>
+<div class="slimscroll">
+  <ul id="hanger-<%= @conversation.id %>" class="messages">
+    <% @messages.each do |message| %>
+      <%= render partial: 'messages/message', locals: { message: message, haunt: current_haunt } %>
+    <% end %>
+  </ul>
+</div>
+<div class="write-form">
+  <%= text_area_tag :body, "", class: "chatboxtextarea", "data-rip" => @conversation.id, "data-behavior" => "hanger_speaker", placeholder: "Type your message " %>
+  <i class="fa fa-picture-o"></i>
+  <i class="fa fa-file-o"></i>
+  <span class="send">Send</span>
+</div>

@@ -46,3 +46,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'redis'
 gem 'hiredis'
+gem 'carrierwave'
+gem 'mini_magick'

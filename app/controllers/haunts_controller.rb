@@ -7,6 +7,6 @@ class HauntsController < ApplicationController
       @conversation = Conversation.create!(sender_id: current_haunt.id, recipient_id: @haunt.id)
     end
 
-    redirect_to @conversation
+    @messages = @conversation.messages
   end
 end
