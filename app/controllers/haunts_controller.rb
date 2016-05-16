@@ -1,5 +1,5 @@
 class HauntsController < ApplicationController
-  def conversation
+  def show
     @haunt = Haunt.find(params[:id])
     if Conversation.between(@haunt.id, current_haunt.id).present?
       @conversation = Conversation.between(@haunt.id,current_haunt.id).first

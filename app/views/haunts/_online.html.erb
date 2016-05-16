@@ -1,7 +1,7 @@
 <li id="online-<%= haunt.id %>">
   <%= image_tag haunt.avatar.url.to_s, width: "50", height: "50" %>
   <div class="info">
-    <div class="user"><%= link_to haunt.display_name, conversation_haunt_path(haunt), class: "online-link" %></div>
+    <div class="user"><%= link_to haunt.display_name, haunt, class: "online-link" %></div>
     <div class="status <%= set_availability_class(haunt.id, appearences_ids) %>"> <%= set_availability_text(haunt.id, appearences_ids) %></div>
   </div>
 </li>
