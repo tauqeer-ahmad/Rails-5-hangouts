@@ -15,9 +15,6 @@ App.hanger = App.cable.subscriptions.create "HangerChannel",
       receiver_haunt = data['recipient_id']
       sender_haunt = data['sender_id']
 
-    if window.Notification
-      Notification.requestPermission()
-
     if active_haunt != data['creator_id'] && open_haunt != sender_haunt
       $("#online-#{sender_haunt} a").addClass('new-message-alert')
 
