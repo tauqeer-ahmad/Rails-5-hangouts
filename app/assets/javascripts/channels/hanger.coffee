@@ -7,17 +7,26 @@ App.hanger = App.cable.subscriptions.create "HangerChannel",
 
   received: (data) ->
     active_haunt = parseInt( $('body').attr('data-active-haunt') , 10 );
-    if window.Notification && active_haunt == data['creator_id']
+    open_haunt = parseInt( $('.conversation-show').attr('data-opened-haunt') , 10 ) if $('.conversation-show').attr('data-opened-haunt') > 0
+    if data['recipient_id'] == data['creator_id']
+      receiver_haunt = data['sender_id']
+      sender_haunt = data['recipient_id']
+    else
+      receiver_haunt = data['recipient_id']
+      sender_haunt = data['sender_id']
+
+    if window.Notification
       Notification.requestPermission()
 
-    new Notification data['ntitle'], body: data['nbody'] if active_haunt == data['recipient_id']
+    if active_haunt != data['creator_id'] && open_haunt != sender_haunt
+      $("#online-#{sender_haunt} a").addClass('new-message-alert')
 
     $("#hanger-#{data['conversation_id']}").append data['message']
     $('.slimscroll').scrollTop($('.slimscroll')[0].scrollHeight)
     if active_haunt == data['creator_id']
       $('#sendAudio')[0].play()
       $("#message-#{data['message_id']}").addClass('i')
-    else if active_haunt == data['recipient_id'] || active_haunt == data['sender_id']
+    else if active_haunt == receiver_haunt
       $('#chatAudio')[0].play()
       $("#message-#{data['message_id']}").addClass('friend-with-a-SVAGina')
 

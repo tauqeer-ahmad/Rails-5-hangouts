@@ -6,3 +6,16 @@
 #appearances {
   padding-left: 20px;
 }
+
+.on-avatar {
+  border-color: #62bf6e !important;
+}
+
+.off-avatar {
+  border-color: #fd8064 !important;
+}
+
+.new-message-alert {
+  font-weight: bold;
+  color: #CC1100 !important;
+}

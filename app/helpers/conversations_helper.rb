@@ -4,6 +4,11 @@ module ConversationsHelper
     return "off"
   end
 
+  def set_availability_class_img(haunt_id, active_ids)
+    return "on-avatar" if haunt_id.in? active_ids
+    return "off-avatar"
+  end
+
   def set_availability_text(haunt_id, active_ids)
     return "online" if haunt_id.in? active_ids
     return "offline"

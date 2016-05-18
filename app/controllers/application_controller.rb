@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_online_haunts
-    @appearances ||= Haunt.all
+    @appearances ||= Haunt.where("id != ?", current_haunt.try(:id))
   end
 
   protected
