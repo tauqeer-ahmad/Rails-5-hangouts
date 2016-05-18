@@ -2,3 +2,17 @@
   color: #fff;
   text-decoration: none;
 }
+
+#wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.devise-form {
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 370px;
+  width: 100%;
+  text-align: center;
+}
