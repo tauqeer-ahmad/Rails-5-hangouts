@@ -12,8 +12,15 @@ bind_slim_scroll_list_friends = ->
     height: '600px'
 
 hide_flash_messages_onclick = ->
+  setTimeout (->
+    $('.flash-alert').animate({top: -$('.flash-alert').outerHeight()}, 500)
+    $('.flash-alert').fadeOut("slow")
+    return
+  ), 3000
+
   $('body').on 'click', '.flash-alert', ->
-    $(this).animate({top: -$(this).outerHeight()}, 500);
+    $(this).animate({top: -$(this).outerHeight()}, 500)
+    $('.flash-alert').fadeOut("slow")
 
 $ ->
   bind_slim_scroll_list_friends()

@@ -1,0 +1,20 @@
+<header class="header-user-dropdown">
+  <div class="header-limiter">
+    <h1><a href="#">Hang<span>out</span></a></h1>
+
+    <nav>
+    </nav>
+
+    <div class="header-user-menu">
+
+      <%= image_tag current_haunt.avatar.url.to_s %>
+
+      <ul>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Payments</a></li>
+        <li><%= link_to('Logout', destroy_haunt_session_path, method: :delete, class: "highlight") %></li>
+      </ul>
+    </div>
+
+  </div>
+</header>

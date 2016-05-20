@@ -1,6 +1,6 @@
 <div class="top conversation-show" data-opened-haunt="<%= @haunt.id %>">
   <div class="avatar">
-    <%= image_tag @haunt.avatar.url.to_s, width: "50", height: "50" %>
+    <%= image_tag @haunt.avatar.url.to_s, width: "50", height: "50", class: "#{set_availability_class_img(@haunt.id, @appearances_ids )}" %>
   </div>
   <div class="info">
     <div class="name"><%= @haunt.display_name %></div>

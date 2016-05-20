@@ -9,17 +9,7 @@
   </head>
 
   <body data-active-haunt=<%= current_haunt.try(:id) %> >
-    <ul>
-      <% if haunt_signed_in? %>
-        <li>
-          <%= link_to('Logout', destroy_haunt_session_path, :method => :delete) %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to('Login', new_haunt_session_path)  %>
-        </li>
-      <% end %>
-    </ul>
+    <%= render 'layouts/header' %>
     <%= render 'layouts/flash_messages' %>
 
     <div class="ui">
