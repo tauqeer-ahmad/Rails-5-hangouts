@@ -14,11 +14,8 @@
 
     <div class="ui">
       <div class="left-menu">
-        <form action="#" class="search">
-          <input placeholder="search..." type="search" name="" id="">
-          <input type="submit" value="&#xf002;">
-        </form>
-        <menu class="list-friends">
+        <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".default_list" autocomplete="off">
+        <menu class="list-friends default_list">
           <% @appearances.each do |haunt| %>
             <%= render partial: "haunts/online", locals: {haunt: haunt, appearences_ids: $redis_onlines.keys.collect(&:to_i)} %>
           <% end %>

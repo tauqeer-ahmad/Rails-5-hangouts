@@ -26,7 +26,10 @@ $ ->
   bind_slim_scroll_list_friends()
   bind_slim_scroll()
   hide_flash_messages_onclick()
+  $('#search').hideseek
+    nodata: 'No results found'
 
 $(document).on 'turbolinks:load', (event) ->
   bind_slim_scroll_list_friends()
   bind_slim_scroll()
+  $('#search').hideseek()
