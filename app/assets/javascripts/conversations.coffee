@@ -11,9 +11,14 @@ bind_slim_scroll_list_friends = ->
   $('.list-friends').slimScroll
     height: '600px'
 
+hide_flash_messages_onclick = ->
+  $('body').on 'click', '.flash-alert', ->
+    $(this).animate({top: -$(this).outerHeight()}, 500);
+
 $ ->
   bind_slim_scroll_list_friends()
   bind_slim_scroll()
+  hide_flash_messages_onclick()
 
 $(document).on 'turbolinks:load', (event) ->
   bind_slim_scroll_list_friends()
